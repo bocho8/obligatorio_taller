@@ -11,3 +11,7 @@ Ramas creadas desde main limpio:
 - `feature/venta-productos` — compras
 
 Todas subidas a GitHub y ya se ven con `git branch -a`.
+
+## KAN-11: Script de detección de cambios
+
+Se creó `scripts/weekly_push.sh` con `git pull`, `git status --porcelain`, y alerta si no hay cambios. En la primera ejecución detectó correctamente `scripts/` como untracked. Pendiente KAN-12 para commit + push.
