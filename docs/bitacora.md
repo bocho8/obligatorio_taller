@@ -19,3 +19,11 @@ Se creó `scripts/weekly_push.sh` con `git pull`, `git status --porcelain`, y al
 ## KAN-12: Script de commit y push
 
 Se completó `scripts/weekly_push.sh`. El problema principal: no se puede escribir `[EXITO]` en README antes del push porque si el push falla queda un falso positivo. La solución fue separar README del commit grande con `git add -A && git reset README.md` y escribir el registro solo después de confirmar el resultado del push.
+
+## KAN-4: Menú interactivo
+
+Se creó `ventas.sh` con la estructura base: shebang, variables `ARCHIVO_BD` y `usuario_logueado`, función `menu()` con `while true`, `case` y `read` para 6 opciones.
+
+## KAN-5: Registro de usuarios
+
+Se agregó `registrar_usuario()` a `ventas.sh`. Pide nombre y contraseña, valida vacíos, espacios y duplicados con `grep -q`. Guarda en `data/ventas.dat` con formato `USUARIO:nombre clave`. Se ignoró `data/` con `.gitignore`. Las ramas develop y feature/autenticacion se sincronizaron con main.
