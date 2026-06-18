@@ -19,3 +19,7 @@ Se creó `scripts/weekly_push.sh` con `git pull`, `git status --porcelain`, y al
 ## KAN-12: Script de commit y push
 
 Se completó `scripts/weekly_push.sh`. El problema principal: no se puede escribir `[EXITO]` en README antes del push porque si el push falla queda un falso positivo. La solución fue separar README del commit grande con `git add -A && git reset README.md` y escribir el registro solo después de confirmar el resultado del push.
+
+## KAN-5: Registro de usuarios
+
+Funcion registrar_usuario() agregada a ventas.sh. Valida nombre vacio, espacios, duplicados, y contrasena. Guarda en data/ventas.dat con formato USUARIO:nombre clave.
