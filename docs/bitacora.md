@@ -15,3 +15,7 @@ Todas subidas a GitHub y ya se ven con `git branch -a`.
 ## KAN-11: Script de detección de cambios
 
 Se creó `scripts/weekly_push.sh` con `git pull`, `git status --porcelain`, y alerta si no hay cambios. En la primera ejecución detectó correctamente `scripts/` como untracked. Pendiente KAN-12 para commit + push.
+
+## KAN-12: Script de commit y push
+
+Se completó `scripts/weekly_push.sh`. El problema principal: no se puede escribir `[EXITO]` en README antes del push porque si el push falla queda un falso positivo. La solución fue separar README del commit grande con `git add -A && git reset README.md` y escribir el registro solo después de confirmar el resultado del push.
