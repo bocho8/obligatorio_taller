@@ -14,7 +14,20 @@ if [[ -z "$CAMBIOS" ]]; then
     echo "ALERTA: No hay cambios locales para subir."
     echo "- [$FECHA] [ALERTA] Sin cambios en $RAMA" >> README.md
     exit 1
+fi
+
+LINEAS=$(git diff --shortstat | tr -d '\n')
+echo "Resumen: $LINEAS"
+
+git add -A
+git commit -m "Sincronización semanal - $FECHA"
+
+if git push origin "$RAMA"; then
+    echo "Push exitoso."
+    echo "- [$FECHA] [EXITO] Push en $RAMA. $LINEAS" >> README.md
+    exit 0
 else
-    echo "Cambios detectados."
-    echo "$CAMBIOS"
+    echo "ERROR: Falló el push."
+    echo "- [$FECHA] [ERROR] Falló push en $RAMA" >> README.md
+    exit 1
 fi
