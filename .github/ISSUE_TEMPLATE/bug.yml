@@ -12,7 +12,7 @@ body:
     attributes:
       label: Descripción
       description: Qué está pasando y qué debería pasar
-      placeholder: Ej: Al intentar comprar un producto sin stock, el sistema deja pasar la compra igual
+      placeholder: "Ej: al comprar sin stock, el sistema no muestra error"
     validations:
       required: true
   - type: textarea
