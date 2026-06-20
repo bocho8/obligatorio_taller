@@ -33,3 +33,11 @@ Funcion registrar_usuario() agregada a ventas.sh. Valida nombre vacio, espacios,
 - **Merge conflict en docs/bitacora.md**: main y develop tenian la entrada de KAN-5 redactada distinto. Se resolvio quedandose con la version mas completa (main) y unificando el formato.
 - **Branches desincronizadas**: los commits de scripts y docs se hicieron en main, no en develop. Solucion: merge main → develop y develop → feature/* en cadena.
 - **git diff --shortstat vacio**: cuando no hay commits nuevos en la rama, diff no devuelve nada. Solucion: verificar con un if que la variable no este vacia antes de usarla (se resolvio en KAN-12).
+
+## KAN-16: Template Bug
+
+Se creo .github/ISSUE_TEMPLATE/bug.yml con campos: descripcion, pasos para reproducir y comportamiento esperado.
+
+## KAN-17: Template Feature Request
+
+Se creo .github/ISSUE_TEMPLATE/feature_request.yml con campos: problema relacionado, solucion propuesta y alternativas consideradas.
