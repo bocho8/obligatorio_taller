@@ -1,0 +1,29 @@
+name: Mejora
+description: Proponer una mejora de algo existente
+title: "[MEJORA]: "
+labels: ["improvement"]
+
+body:
+  - type: textarea
+    id: area
+    attributes:
+      label: Área a mejorar
+      description: Qué parte del sistema puede mejorarse
+    validations:
+      required: true
+
+  - type: textarea
+    id: beneficio
+    attributes:
+      label: Beneficio esperado
+      description: Qué ventaja aporta la mejora
+    validations:
+      required: true
+
+  - type: textarea
+    id: ejemplo
+    attributes:
+      label: Ejemplo de uso
+      description: Ejemplo concreto
+    validations:
+      required: false
