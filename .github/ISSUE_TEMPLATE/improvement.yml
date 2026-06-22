@@ -1,7 +1,7 @@
 name: Mejora
 description: Proponer una mejora de algo existente
 title: "[MEJORA]: "
-labels: ["improvement"]
+labels: ["enhancement"]
 
 body:
   - type: textarea
