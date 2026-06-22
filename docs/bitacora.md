@@ -41,3 +41,11 @@ Se creo .github/ISSUE_TEMPLATE/bug.yml con campos: descripcion, pasos para repro
 ## KAN-17: Template Feature Request
 
 Se creo .github/ISSUE_TEMPLATE/feature_request.yml con campos: problema relacionado, solucion propuesta y alternativas consideradas.
+
+## KAN-18 a KAN-21: Templates restantes y README
+
+Lucas creo los templates de Mejora y Documentacion, y completo el README.md del repositorio.
+
+## Post-auditoria: Correcciones
+
+Se integro el codigo de Fabri (alta de productos, inicio/cierre de sesion, compra de productos) al ventas.sh unificado usando el formato ARCHIVO_BD. Se mergeo main a develop para sincronizar templates y docs. Se borro la rama Alta-de-productos (mal nombrada) y se reabrieron los 8 issues de ejemplo en GitHub.
