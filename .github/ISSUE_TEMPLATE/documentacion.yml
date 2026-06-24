@@ -1,0 +1,29 @@
+name: Documentación
+description: Solicitar cambios o mejoras en la documentación
+title: "[DOC]: "
+labels: ["documentation"]
+
+body:
+  - type: textarea
+    id: problema
+    attributes:
+      label: Documentación faltante
+      description: Qué información falta o es incorrecta
+    validations:
+      required: true
+
+  - type: textarea
+    id: propuesta
+    attributes:
+      label: Propuesta de cambio
+      description: Qué debería agregarse o corregirse
+    validations:
+      required: true
+
+  - type: textarea
+    id: referencia
+    attributes:
+      label: Referencias
+      description: Material o enlaces relacionados
+    validations:
+      required: false

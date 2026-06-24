@@ -1,0 +1,33 @@
+name: Solicitud de Funcionalidad
+description: Proponer una nueva funcionalidad para el sistema
+title: "[FEATURE]: "
+labels: ["feature request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describí la funcionalidad que te gustaría ver en el sistema.
+  - type: textarea
+    id: problema
+    attributes:
+      label: Problema relacionado
+      description: Qué problema soluciona esta funcionalidad
+      placeholder: "Ej: No hay forma de ver el historial de ventas por influencer"
+    validations:
+      required: true
+  - type: textarea
+    id: solucion
+    attributes:
+      label: Solución propuesta
+      description: Cómo debería funcionar
+      placeholder: "Ej: Agregar una opción en el menú que muestre todas las ventas filtradas por influencer"
+    validations:
+      required: true
+  - type: textarea
+    id: alternativas
+    attributes:
+      label: Alternativas consideradas
+      description: Otras formas de resolverlo que pensaste
+      placeholder: "Ej: También podría exportarse a un archivo CSV"
+    validations:
+      required: false
