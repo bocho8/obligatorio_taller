@@ -62,9 +62,9 @@ Diagrama:
 
 main
 └── develop
-├── feature/autenticacion
-├── feature/alta-productos
-└── feature/venta-productos
+    ├── feature/autenticacion
+    ├── feature/alta-productos
+    └── feature/venta-productos
 
 ## Gestión de Issues
 
