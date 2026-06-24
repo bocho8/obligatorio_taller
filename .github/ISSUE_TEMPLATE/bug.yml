@@ -1,0 +1,35 @@
+name: Reporte de Bug
+description: Informar sobre un error en el sistema de ventas
+title: "[BUG]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Gracias por reportar. Completá los campos para ayudarnos a resolverlo.
+  - type: textarea
+    id: descripcion
+    attributes:
+      label: Descripción
+      description: Qué está pasando y qué debería pasar
+      placeholder: "Ej: al comprar sin stock, el sistema no muestra error"
+    validations:
+      required: true
+  - type: textarea
+    id: pasos
+    attributes:
+      label: Pasos para reproducir
+      description: Cómo llegar al error paso a paso
+      placeholder: |
+        1. Ejecutar ./ventas.sh
+        2. Iniciar sesión con usuario X
+        3. Seleccionar opción 4...
+    validations:
+      required: true
+  - type: textarea
+    id: esperado
+    attributes:
+      label: Comportamiento esperado
+      placeholder: Debería mostrar un mensaje de error y no permitir la compra
+    validations:
+      required: true
