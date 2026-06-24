@@ -2,7 +2,7 @@
 
 ## Descripción del proyecto
 
-Este proyecto consiste en el desarrollo de un sistema de ventas implementado en Bash y gestionado mediante Git y GitHub. El objetivo es permitir la administración de usuarios, productos y ventas, aplicando además buenas prácticas de control de versiones mediante GitFlow.
+Este proyecto es un sistema de ventas en Bash con Git y GitHub. Permite administrar usuarios, productos y ventas, siguiendo GitFlow para el control de versiones.
 
 ## Integrantes
 
@@ -12,19 +12,19 @@ Este proyecto consiste en el desarrollo de un sistema de ventas implementado en 
 
 ## Requisitos
 
-Para ejecutar el proyecto se requiere:
+Necesitás:
 
-* Sistema operativo Linux o Git Bash en Windows.
+* Linux o Git Bash en Windows.
 * Git instalado.
 * Bash.
-* Cuenta de GitHub.
+* Una cuenta de GitHub.
 
 ## Instrucciones de uso
 
 1. Clonar el repositorio:
 
 ```bash
-git clone URL_DEL_REPOSITORIO
+git clone https://github.com/bocho8/obligatorio_taller.git
 ```
 
 2. Ingresar al directorio:
@@ -68,7 +68,7 @@ main
 
 ## Gestión de Issues
 
-Se implementaron templates para:
+Creamos 4 templates de GitHub Issues:
 
 * Bugs
 * Feature Requests
@@ -77,14 +77,18 @@ Se implementaron templates para:
 
 ## Enlaces a Issues
 
-Agregar aquí los enlaces a los issues creados para cada categoría:
+* Bug #8 — [Iniciar sesión con usuario vacío](https://github.com/bocho8/obligatorio_taller/issues/8)
+* Bug #7 — [Cantidad de compra no numérica rompe stock](https://github.com/bocho8/obligatorio_taller/issues/7)
+* Feature Request #6 — [Historial de compras por usuario](https://github.com/bocho8/obligatorio_taller/issues/6)
+* Feature Request #5 — [Exportar ventas a CSV](https://github.com/bocho8/obligatorio_taller/issues/5)
+* Mejora #4 — [Listar productos antes de comprar](https://github.com/bocho8/obligatorio_taller/issues/4)
+* Mejora #3 — [Validar precio negativo en alta](https://github.com/bocho8/obligatorio_taller/issues/3)
+* Documentación #2 — [Falta diagrama Gitflow](https://github.com/bocho8/obligatorio_taller/issues/2)
+* Documentación #1 — [README sin permisos de data/](https://github.com/bocho8/obligatorio_taller/issues/1)
 
-* Bug #1
-* Bug #2
-* Feature Request #1
-* Feature Request #2
-* Mejora #1
-* Mejora #2
-* Documentación #1
-* Documentación #2
+## Bitácora de sincronización
+
+Registros generados por `scripts/weekly_push.sh` con la actividad semanal del repositorio:
+
+- [2026-06-23 22:00:00] [EXITO] Push en main. 3 files changed, 20 insertions(+), 5 deletions(-)
 
