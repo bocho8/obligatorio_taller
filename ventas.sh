@@ -1,12 +1,32 @@
 #!/bin/bash
+#
+#   Autores: Fabrizio Pedemonti - N° 372959
+#            Lucas Pittaluga      - N° 372926
+#            Agustin Roizen       - N° 350021
+#
+# Sistema de ventas en Bash con archivo de texto como base de datos.
+# Guarda usuarios, productos y ventas en data/ventas.dat.
+#
+# Formato del archivo (una línea por registro):
+#   USUARIO:nombre clave
+#   PRODUCTO:nombre descripcion precio stock
+#   VENTA:usuario nombre_producto cantidad
+#
+# La sesión se maneja con la variable global usuario_logueado.
+# Si está vacía, el usuario no inició sesión.
 
 ARCHIVO_BD="data/ventas.dat"
 usuario_logueado=""
 
 # ==================== USUARIOS ====================
+# Registro, inicio y cierre de sesión.
+# Las contraseñas se guardan en texto plano (el obligatorio no pide hash).
+# No se puede registrar dos usuarios con el mismo nombre.
 
 registrar_usuario() {
     echo "=== REGISTRO DE USUARIO ==="
+
+    # Nombre: no vacío, sin espacios, sin duplicados
     read -p "Ingrese nombre de usuario: " nombre
     if [[ -z "$nombre" ]]; then
         echo "Error: El usuario no puede estar vacio."
@@ -19,11 +39,13 @@ registrar_usuario() {
 
     mkdir -p data
     touch "$ARCHIVO_BD"
+    # grep -q busca coincidencia exacta al principio de línea
     if grep -q "^USUARIO:$nombre " "$ARCHIVO_BD"; then
         echo "Error: El usuario '$nombre' ya existe."
         return 1
     fi
 
+    # Contraseña: oculta con -s, mismas validaciones que el nombre
     read -s -p "Ingrese contrasena: " clave
     echo ""
     if [[ -z "$clave" ]]; then
@@ -40,6 +62,7 @@ registrar_usuario() {
 }
 
 iniciar_sesion() {
+    # Si ya hay sesión activa, no deja iniciar otra
     if [[ -n "$usuario_logueado" ]]; then
         echo "Ya hay una sesion activa como '$usuario_logueado'."
         return 0
@@ -55,6 +78,8 @@ iniciar_sesion() {
         return 1
     fi
 
+    # grep con $ al final: la línea debe terminar exactamente con la clave
+    # (evita que "pass" matchee "password")
     if grep -q "^USUARIO:$nombre_usuario $clave$" "$ARCHIVO_BD"; then
         usuario_logueado="$nombre_usuario"
         echo "Bienvenido, $usuario_logueado."
@@ -74,6 +99,9 @@ cerrar_sesion() {
 }
 
 # ==================== PRODUCTOS ====================
+# Alta y compra de productos.
+# Para comprar hay que estar logueado.
+# El stock se actualiza con un archivo temporal (no se edita in-place).
 
 alta_producto() {
     if [[ -z "$usuario_logueado" ]]; then
@@ -82,6 +110,8 @@ alta_producto() {
     fi
 
     echo "=== ALTA DE PRODUCTO ==="
+
+    # Nombre: mismas validaciones que usuarios
     read -p "Nombre del producto: " nombre
     if [[ -z "$nombre" ]]; then
         echo "Error: El nombre no puede estar vacio."
@@ -98,8 +128,10 @@ alta_producto() {
     fi
 
     read -p "Descripcion: " descripcion
+    # Reemplaza espacios por guiones bajos para que quede como un solo campo
     descripcion=${descripcion// /_}
 
+    # Precio: entero positivo, loop hasta que pongan uno válido
     while true; do
         read -p "Precio: " precio
         if [[ "$precio" =~ ^[0-9]+$ ]] && [[ "$precio" -gt 0 ]]; then
@@ -108,6 +140,7 @@ alta_producto() {
         echo "Error: Debe ser un numero entero positivo."
     done
 
+    # Stock: entero >= 0 (se puede crear con stock cero)
     while true; do
         read -p "Stock: " stock
         if [[ "$stock" =~ ^[0-9]+$ ]] && [[ "$stock" -ge 0 ]]; then
@@ -129,15 +162,18 @@ comprar_producto() {
     echo "=== COMPRAR PRODUCTO ==="
     read -p "Nombre del producto: " nombre
 
+    # Busca la línea del producto. Si no existe, error.
     linea=$(grep "^PRODUCTO:$nombre " "$ARCHIVO_BD")
     if [[ -z "$linea" ]]; then
         echo "Error: El producto '$nombre' no existe."
         return 1
     fi
 
+    # Extrae los campos de la línea (descripción puede tener guiones bajos)
     datos=${linea#PRODUCTO:}
     read -r prod_nombre prod_desc prod_precio prod_stock <<< "$datos"
 
+    # Cantidad: entero positivo (no cero, no negativo, no letras)
     read -p "Cantidad: " cantidad
     if ! [[ "$cantidad" =~ ^[0-9]+$ ]] || [[ "$cantidad" -eq 0 ]]; then
         echo "Error: La cantidad debe ser un entero mayor a cero."
@@ -150,8 +186,11 @@ comprar_producto() {
     fi
 
     nuevo_stock=$((prod_stock - cantidad))
+    # Registra la venta como una línea nueva
     echo "VENTA:$usuario_logueado $nombre $cantidad" >> "$ARCHIVO_BD"
 
+    # Actualiza el stock: lee línea por línea, reescribe solo la del producto
+    # Se usa un archivo temporal porque no se puede editar in-place en Bash
     temp=$(mktemp)
     while IFS= read -r linea_bd; do
         if [[ "$linea_bd" == "PRODUCTO:$nombre "* ]]; then
@@ -167,6 +206,8 @@ comprar_producto() {
 }
 
 # ==================== MENU ====================
+# Loop infinito que muestra las opciones y despacha a cada función.
+# Sale solo con la opción 6 (exit 0).
 
 menu() {
     while true; do
